@@ -6,7 +6,7 @@ import * as React from "react";
 import "./Card.scss";
 
 
-export const Card: FC<CardInterface> = ({title, description, percentage}) => {
+export const Card: FC<CardInterface> = ({title, description, variation}) => {
   return(
     <div className={"card"}>
       <Grid container>
@@ -19,8 +19,8 @@ export const Card: FC<CardInterface> = ({title, description, percentage}) => {
           <Grid item xs={6} sm={6} md={6} className={"card-description"}>
             {description}
           </Grid>
-          <Grid item xs={6} sm={6} md={6} className={"card-description-percentage"}>
-            {percentage}
+          <Grid item xs={6} sm={6} md={6} className={"card-description-variation"}>
+            {variation}
           </Grid>
         </Grid>
       </Grid>

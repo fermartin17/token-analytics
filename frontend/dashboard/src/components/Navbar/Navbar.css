@@ -1,0 +1,52 @@
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+.navbar {
+  position: absolute;
+  height: 64px;
+  background: #FFFFFF;
+}
+
+.navbar-text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  padding-left: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: #333335;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 49px;
+}
+
+.search-input {
+  position: absolute;
+  width: 351px;
+  height: 40px;
+  background: #F9F9FB;
+  border-radius: 6px;
+  border: none;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #C0C0C5;
+}
+
+/*# sourceMappingURL=Navbar.css.map */

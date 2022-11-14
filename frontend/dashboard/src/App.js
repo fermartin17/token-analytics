@@ -5,6 +5,7 @@ import {Card} from "./components/Card/Card";
 import {CardDeck} from "./components/CardDeck/CardDeck";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Sidebar} from "./components/Sidebar/Sidebar";
+import {CardSection} from"./pages/dashboard/sections/CardSection";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path={"/deck"} element={<CardDeck/>}/>
         <Route path={"/navbar"} element={<Navbar/>}/>
         <Route path={"/sidebar"} element={<Sidebar/>}/>
+        <Route path={"/section"} element={<CardSection/>}/>
       </Routes>
     </Router>
   );

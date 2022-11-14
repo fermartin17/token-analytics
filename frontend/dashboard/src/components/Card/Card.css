@@ -10,7 +10,6 @@ html {
 }
 .card {
   box-sizing: border-box;
-  position: absolute;
   width: 206px;
   height: 70px;
   background: #FFFFFF;
@@ -20,6 +19,7 @@ html {
   display: flex;
   justify-content: left;
   align-items: center;
+  margin-top: 5px;
 }
 
 .card-text-container {

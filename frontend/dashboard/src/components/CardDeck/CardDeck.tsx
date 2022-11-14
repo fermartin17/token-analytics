@@ -8,7 +8,6 @@ import {CardInterface} from "../../domain/CardInterface";
 import {Card} from "../Card/Card";
 
 export const CardDeck: FC<CardDeckInterface> = ({items}) => {
-    
 
   const cards: CardInterface[] =[{
     title: "Total Allocation",
@@ -34,9 +33,9 @@ export const CardDeck: FC<CardDeckInterface> = ({items}) => {
   },];
 
   return (
-    <Grid container spacing={2} direction="row" alignItems="flex-start">
-      {cards.map((elem: CardInterface) => (
-        <Grid item xs={12} sm={6} md={2} key={elem.title}>
+    <Grid container direction="row" alignItems="flex-start">
+      {items.map((elem: CardInterface) => (
+        <Grid item={true} xs={12} sm={6} md={3} lg={2} key={elem.title}>
           <Card {...elem} />
         </Grid>
       ))}

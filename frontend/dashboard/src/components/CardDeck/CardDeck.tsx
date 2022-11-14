@@ -3,7 +3,7 @@ import {Grid} from "@mui/material";
 
 import "./CardDeck.scss";
 import {FC} from "react";
-import {CardDeckInterface} from "../../domain/CardDeckInterface";
+import {CardDeckInterface} from "./CardDeckInterface";
 import {CardInterface} from "../../domain/CardInterface";
 import {Card} from "../Card/Card";
 

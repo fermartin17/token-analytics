@@ -1,0 +1,81 @@
+.sidebar {
+  width: 63px;
+  background: #FFFFFF;
+
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+
+  @media screen and (max-height: 450px) {
+    .sidebar {
+      padding-top: 15px;
+    }
+    .sidebar img {
+      font-size: 18px;
+    }
+  }
+  align-content: flex-start;
+
+}
+
+.sidebar-logo {
+  padding-top: 20px;
+  justify-content: center;
+}
+
+.logo {
+  height: 25.37px;
+  width: 21.89px;
+}
+
+.sidebar-tools-section {
+  margin-top: 100px;
+}
+
+.tools-selected {
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  display: flex;
+  width: 40px;
+  background: #E7F1FF;
+  border-radius: 8px;
+  margin: auto;
+}
+
+.sidebar-icon {
+  width: 20px;
+  height: 17px;
+}
+
+.sidebar-tools {
+  margin-top: 20px;
+}
+
+.tools{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+
+  background: #FFFFFF;
+  border-radius: 8px;
+}
+
+.sidebar-item{
+  width: 40px;
+}
+
+.sidebar-footer-section{
+  margin-top: 410px
+}
+
+.sidebar-footer-user{
+  width: 32px;
+  height: 32px;
+}

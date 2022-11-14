@@ -1,4 +1,4 @@
-import {NavbarInterface} from "../../domain/NavbarInterface";
+import {NavbarInterface} from "./NavbarInterface";
 import * as React from "react";
 
 import "./Navbar.scss";

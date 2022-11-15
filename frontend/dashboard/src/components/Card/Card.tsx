@@ -16,12 +16,23 @@ export const Card: FC<CardInterface> = ({title, description, variation}) => {
           </Grid>
         </Grid>
         <Grid container xs={12} sm={12} md={12}>
-          <Grid item xs={6} sm={6} md={6} className={"card-description"}>
-            {description}
-          </Grid>
-          <Grid item xs={6} sm={6} md={6} className={"card-description-variation"}>
-            {variation}
-          </Grid>
+          {
+            description &&
+            <Grid item xs={6} sm={6} md={6} className={"card-description"}>
+              {description}
+            </Grid>
+          }
+          {
+            description && variation &&
+            <Grid item xs={6} sm={6} md={6} className={"card-description-variation"}>
+              {variation}
+            </Grid>
+          }
+          { !description && variation &&
+              <Grid item xs={6} sm={6} md={6} className={"card-variation"}>
+                {variation}
+              </Grid>
+          }
         </Grid>
       </Grid>
     </div>

@@ -9,9 +9,10 @@ html {
   }
 }
 .navbar {
-  position: absolute;
+  position: fixed;
   height: 64px;
   background: #FFFFFF;
+  width: auto;
 }
 
 .navbar-text {
@@ -20,7 +21,7 @@ html {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  padding-left: 42px;
+  padding-left: 105px;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -35,7 +36,7 @@ html {
 }
 
 .search-input {
-  position: absolute;
+  position: fixed;
   width: 351px;
   height: 40px;
   background: #F9F9FB;

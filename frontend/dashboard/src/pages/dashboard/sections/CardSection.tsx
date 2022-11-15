@@ -4,9 +4,9 @@ import {FC} from "react";
 import * as React from "react";
 import {Grid} from "@mui/material";
 import {CardDeck} from "../../../components/CardDeck/CardDeck";
-import {CardInterface} from "../../../domain/CardInterface";
 
 import "./styles/CardSection.scss";
+import {CardInterface} from "../../../domain/CardInterface";
 
 export const CardSection: FC<CardSectionInterface> = ({title, analytics}) => {
   const cards: CardInterface[] =[{
@@ -31,17 +31,13 @@ export const CardSection: FC<CardSectionInterface> = ({title, analytics}) => {
     title: "Total Deployed",
     description: "$21,000,000",
   },];
-    
+
   return(
     <Grid container xs={12} sm={12} md={12} className={"section"}>
       <Grid xs={12} sm={12} md={12} className={"section-title-text"}>
-        <Grid item>
-          {title} Global Metrics
-        </Grid>
+        {title}
       </Grid>
-      <Grid container xs={12} sm={12} md={12} className={"section-deck"}>
-        <CardDeck items={cards}></CardDeck>
-      </Grid>
+      <CardDeck items={analytics.items}></CardDeck>
     </Grid>
   );
 };

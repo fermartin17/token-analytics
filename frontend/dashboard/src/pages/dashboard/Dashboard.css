@@ -1,0 +1,23 @@
+.board {
+  background-color: #E5E5E5;
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar-section {
+  height: fit-content;
+}
+
+.analytics-section-top {
+  padding-top: 87px;
+  padding-left: 105px;
+  width: 100vw;
+}
+
+.analytics-section {
+  padding-top: 20px;
+  padding-left: 105px;
+  width: 100vw;
+}
+
+/*# sourceMappingURL=Dashboard.css.map */

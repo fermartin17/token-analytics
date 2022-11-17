@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import { PhotoModule } from './photo/photo.module';
+import { UniswapModule } from './uniswap/uniswap.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ envFilePath: '.env' }), PhotoModule],
+  imports: [ConfigModule.forRoot({ envFilePath: '.env' }), UniswapModule],
   controllers: [AppController],
   providers: [AppService],
 })

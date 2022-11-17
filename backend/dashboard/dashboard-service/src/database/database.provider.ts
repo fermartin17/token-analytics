@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { Photo } from '../photo/photo.entity';
+import { PairHourDataEntity } from '../uniswap/infrastructure/persistence/entities/pair.hour.data.entity';
 
 export const databaseProviders = [
   {
@@ -12,7 +12,7 @@ export const databaseProviders = [
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DATABASE,
-        entities: [Photo],
+        entities: [PairHourDataEntity],
         synchronize: true,
       });
 

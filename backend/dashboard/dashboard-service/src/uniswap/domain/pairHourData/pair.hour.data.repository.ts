@@ -3,4 +3,5 @@ import { PairHourData } from './pair.hour.data';
 
 export interface PairHourDataRepository {
   create(createPairHourDataDto: CreatePairHourDataDto): Promise<PairHourData>;
+  findNewestPairHourDataByPairId(pairId: string): Promise<PairHourData>;
 }

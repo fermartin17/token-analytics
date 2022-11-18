@@ -34,4 +34,19 @@ export class PairHourDataPostgresqlRepository
       console.log(error);
     }
   }
+
+  async findNewestPairHourDataByPairId(pairId: string): Promise<PairHourData> {
+    try {
+      const newestPairHourData = await this.repository
+        .createQueryBuilder()
+        .where('pair_id = :pairId', { pairId: pairId })
+        .orderBy('hour_start_unix', 'DESC')
+        .limit(1)
+        .getOne();
+
+      return newestPairHourData ? newestPairHourData.toDomainModel() : null;
+    } catch (error: unknown) {
+      console.log(error);
+    }
+  }
 }

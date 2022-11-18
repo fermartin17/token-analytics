@@ -27,29 +27,55 @@ export class UploadPairHourDataUsecase
 
   async execute(command: UploadPairHourDataCommand): Promise<void> {
     try {
-      const pairHourDatas: PairHourDataFetch[] =
+      let pairHourDatas: PairHourDataFetch[] =
         await this.uniswapService.getPairHourDataByPairIdAndFromWhen(
           command.pairId,
           UploadPairHourDataUsecase.calculateEpochFromDate(),
         );
 
-      let pairHourDataToBeCreated: CreatePairHourDataDto;
+      const possibleNewestRegister: PairHourData =
+        await this.pairHourDataRepository.findNewestPairHourDataByPairId(
+          command.pairId,
+        );
 
-      for (const pairHourData of pairHourDatas) {
-        pairHourDataToBeCreated = {
-          ...pairHourData,
-          pairId: command.pairId,
-          pairDataDate: UploadPairHourDataUsecase.calculateDateFromEpoch(
-            pairHourData.hourStartUnix,
-          ),
-          feeUSD: PairHourData.generateFee(),
-        };
-
-        await this.pairHourDataRepository.create(pairHourDataToBeCreated);
+      if (possibleNewestRegister) {
+        pairHourDatas = UploadPairHourDataUsecase.filterByEpoch(
+          possibleNewestRegister.hourStartUnix,
+          pairHourDatas,
+        );
       }
-    } catch (error: any) {
+      await this.createPairHourDatas(pairHourDatas, command.pairId);
+    } catch (error: unknown) {
       console.log(error);
     }
+  }
+
+  async createPairHourDatas(
+    pairHourDatas: PairHourDataFetch[],
+    pairId: string,
+  ): Promise<void> {
+    let pairHourDataToBeCreated: CreatePairHourDataDto;
+
+    for (const pairHourData of pairHourDatas) {
+      pairHourDataToBeCreated = {
+        ...pairHourData,
+        pairId: pairId,
+        pairDataDate: UploadPairHourDataUsecase.calculateDateFromEpoch(
+          pairHourData.hourStartUnix,
+        ),
+        feeUSD: PairHourData.generateFee(),
+      };
+      await this.pairHourDataRepository.create(pairHourDataToBeCreated);
+    }
+  }
+
+  static filterByEpoch(
+    newestEpochSaved: number,
+    newPairHourDataRegisters: PairHourDataFetch[],
+  ): PairHourDataFetch[] {
+    return newPairHourDataRegisters.filter((elem: PairHourDataFetch) => {
+      return elem.hourStartUnix > newestEpochSaved;
+    });
   }
 
   static calculateEpochFromDate(): number {

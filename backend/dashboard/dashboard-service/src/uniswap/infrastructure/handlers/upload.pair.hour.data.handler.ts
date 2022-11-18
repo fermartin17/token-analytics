@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { UploadPairHourDataUsecase } from '../../application/usecase/upload.pair.hour.data.usecase';
-import { UploadPairHourDataDto } from '../dto/upload.pair.hour.data.dto';
+import { UploadPairHourDataDto } from './dto/upload.pair.hour.data.dto';
 import { UploadPairHourDataCommand } from '../../application/command/upload.pair.hour.data.command';
 
 @Controller('uniswap')
@@ -24,7 +24,7 @@ export class UploadPairHourDataHandler {
   }
 
   @Post('pair-hour-data')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   async create(
     @Res() res: Response,
     @Body() uploadPairHourDataDto: UploadPairHourDataDto,

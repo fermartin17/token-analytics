@@ -23,7 +23,7 @@ export class UploadPairHourDataHandler {
     this.useCase = useCase;
   }
 
-  @Post('pair-hour-data')
+  @Post('pair-hour-datas')
   @HttpCode(HttpStatus.OK)
   async create(
     @Res() res: Response,

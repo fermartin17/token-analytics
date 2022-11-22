@@ -4,7 +4,7 @@ import { UniswapService } from '../domain/uniswap.service.interface';
 import { PairHourDataFetch } from '../domain/pairHourData/pair.hour.data.fetch';
 
 @Injectable()
-export class UniswapServiceImpl implements UniswapService {
+export class UniswapV2ServiceImpl implements UniswapService {
   private BaseAxiosConfig: AxiosRequestConfig = {
     baseURL: process.env.UNISWAP_URL,
   };
@@ -29,6 +29,8 @@ export class UniswapServiceImpl implements UniswapService {
   ){
     hourStartUnix
     hourlyVolumeUSD
+    reserve0
+    reserve1
     reserveUSD
   }
   }`;

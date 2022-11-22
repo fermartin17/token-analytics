@@ -19,8 +19,14 @@ export class PairHourDataEntity {
   @Column({ name: 'reserve_usd', nullable: false })
   reserveUSD: string;
 
-  @Column({ name: 'fee_usd', nullable: true })
-  feeUSD: number;
+  @Column({ name: 'fee_usd', nullable: false })
+  feeUSD: string;
+
+  @Column({ name: 'reserve_0', nullable: false })
+  reserve0: string;
+
+  @Column({ name: 'reserve_1', nullable: false })
+  reserve1: string;
 
   @Column({ name: 'pair_data_date', nullable: false })
   pairDataDate: Date;
@@ -34,8 +40,10 @@ export class PairHourDataEntity {
     entity.hourlyVolumeUSD = pairHourDataToBeCreated.hourlyVolumeUSD.toString();
     entity.hourStartUnix = pairHourDataToBeCreated.hourStartUnix;
     entity.reserveUSD = pairHourDataToBeCreated.reserveUSD.toString();
-    entity.feeUSD = pairHourDataToBeCreated.feeUSD;
+    entity.feeUSD = pairHourDataToBeCreated.feeUSD.toString();
     entity.pairDataDate = pairHourDataToBeCreated.pairDataDate;
+    entity.reserve0 = pairHourDataToBeCreated.reserve0.toString();
+    entity.reserve1 = pairHourDataToBeCreated.reserve1.toString();
 
     return entity;
   }
@@ -48,7 +56,9 @@ export class PairHourDataEntity {
       hourStartUnix: this.hourStartUnix,
       hourlyVolumeUSD: parseInt(this.hourlyVolumeUSD),
       reserveUSD: parseInt(this.reserveUSD),
-      feeUSD: this.feeUSD,
+      reserve0: parseInt(this.reserve0),
+      reserve1: parseInt(this.reserve1),
+      feeUSD: parseInt(this.feeUSD),
     });
   }
 }

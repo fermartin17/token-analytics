@@ -9,6 +9,8 @@ export class PairHourData implements PairHourDataFields {
   private _hourlyVolumeUSD: number;
   private _reserveUSD: number;
   private _feeUSD: number;
+  private _reserve0: number;
+  private _reserve1: number;
   private _pairDataDate: Date;
 
   constructor(pairHourDataParams: PairHourDataParams) {
@@ -19,6 +21,8 @@ export class PairHourData implements PairHourDataFields {
     this._reserveUSD = pairHourDataParams.reserveUSD;
     this._feeUSD = pairHourDataParams.feeUSD;
     this._hourStartUnix = pairHourDataParams.hourStartUnix;
+    this._reserve0 = pairHourDataParams.reserve0;
+    this._reserve1 = pairHourDataParams.reserve1;
   }
 
   get id(): number {
@@ -49,7 +53,15 @@ export class PairHourData implements PairHourDataFields {
     return this._pairDataDate;
   }
 
-  static generateFee(): number {
-    return 0;
+  get reserve0(): number {
+    return this._reserve0;
+  }
+
+  get reserve1(): number {
+    return this._reserve1;
+  }
+
+  static generateFee(reserve0: number, reserve1: number): number {
+    return 1 - Math.sqrt(reserve0) / Math.sqrt(reserve1);
   }
 }

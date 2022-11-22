@@ -49,4 +49,22 @@ export class PairHourDataPostgresqlRepository
       console.log(error);
     }
   }
+
+  async findAllPairHourData(
+    pairId: string,
+    limit: number,
+  ): Promise<PairHourData[]> {
+    try {
+      const pairHourDatas = await this.repository
+        .createQueryBuilder()
+        .where('pair_id = :pairId', { pairId: pairId })
+        .orderBy('hour_start_unix', 'DESC')
+        .limit(limit)
+        .getMany();
+
+      return pairHourDatas.map((elem) => elem.toDomainModel());
+    } catch (error: unknown) {
+      console.log(error);
+    }
+  }
 }

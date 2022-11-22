@@ -5,17 +5,20 @@ import {
   pairHourDataRepositoryTokeProvider,
   uniswapUploadPairHourDataUsecaseProvider,
   pairHourDataRepositoryProvider,
+  uniswapFindAllPairHourDataUsecaseProvider,
 } from './uniswap.module.config';
 import { UploadPairHourDataHandler } from './infrastructure/handlers/upload.pair.hour.data.handler';
+import { FindAllPairHourDataDashboardHandler } from './infrastructure/handlers/find.all.pair.hour.data.dashboard.handler';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [UploadPairHourDataHandler],
+  controllers: [UploadPairHourDataHandler, FindAllPairHourDataDashboardHandler],
   providers: [
     pairHourDataRepositoryTokeProvider,
     uniswapServiceProvider,
     uniswapUploadPairHourDataUsecaseProvider,
     pairHourDataRepositoryProvider,
+    uniswapFindAllPairHourDataUsecaseProvider,
   ],
 })
 export class UniswapModule {}

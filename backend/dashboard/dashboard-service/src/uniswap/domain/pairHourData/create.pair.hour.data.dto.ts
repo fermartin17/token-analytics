@@ -6,4 +6,6 @@ export interface CreatePairHourDataDto {
   reserveUSD: number;
   feeUSD: number;
   pairDataDate: Date;
+  reserve0: number;
+  reserve1: number;
 }

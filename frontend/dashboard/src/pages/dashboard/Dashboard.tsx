@@ -9,6 +9,7 @@ import {Sidebar} from "../../components/Sidebar/Sidebar";
 import {Navbar} from "../../components/Navbar/Navbar";
 import {CardSection} from "./sections/CardSection";
 import {CardDeckInterface} from "../../components/CardDeck/CardDeckInterface";
+import {LineChartPlot} from "../../components/LineChart/LineChart";
 
 export const Dashboard: FC = () => {
   const {pairToken} = useParams();
@@ -59,16 +60,17 @@ export const Dashboard: FC = () => {
     
   return(
     <Grid container className={"board"}>
-      <Grid container>
-        <Sidebar/>
-        <Grid className={"board-section"}>
-          <Navbar title={"Dashboard"} />
-          <Grid className={"analytics-section-top"}>
-            <CardSection title={"Global Metrics"} analytics={section_1} />
-          </Grid>
-          <Grid className={"analytics-section"}>
-            <CardSection title={"Annualized Returns"} analytics={section_2} />
-          </Grid>
+      <Sidebar/>
+      <Grid className={"board-section"}>
+        <Navbar title={"Dashboard"} />
+        <Grid className={"analytics-section-top"}>
+          <CardSection title={"Global Metrics"} analytics={section_1} />
+        </Grid>
+        <Grid className={"analytics-section"}>
+          <CardSection title={"Annualized Returns"} analytics={section_2} />
+        </Grid>
+        <Grid>
+          <LineChartPlot/>
         </Grid>
       </Grid>
     </Grid>

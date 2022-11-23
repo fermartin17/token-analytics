@@ -7,7 +7,8 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Sidebar} from "./components/Sidebar/Sidebar";
 import {CardSection} from"./pages/dashboard/sections/CardSection";
 import {Dashboard} from "./pages/dashboard/Dashboard";
-import {LineChartPlot} from "./components/LineChart/LineChart";
+import {ChartSection} from "./pages/dashboard/sections/ChartSection";
+import {LineChart} from "./components/LineChart/LineChart";
 
 const App = () => {
   return (
@@ -18,8 +19,9 @@ const App = () => {
         <Route path={"/navbar"} element={<Navbar/>}/>
         <Route path={"/sidebar"} element={<Sidebar/>}/>
         <Route path={"/section"} element={<CardSection/>}/>
-        <Route path={"/dashboard/:pairToken"} element={<Dashboard/>}/>
-        <Route path={"/chart"} element={<LineChartPlot/>}/>
+        <Route path={"/dashboard/pairs/:pairToken"} element={<Dashboard/>}/>
+        <Route path={"/chart"} element={<LineChart/>}/>
+        <Route path={"/chart-section"} element={<ChartSection/>}/>
       </Routes>
     </Router>
   );

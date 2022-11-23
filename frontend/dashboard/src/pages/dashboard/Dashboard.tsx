@@ -9,7 +9,7 @@ import {Sidebar} from "../../components/Sidebar/Sidebar";
 import {Navbar} from "../../components/Navbar/Navbar";
 import {CardSection} from "./sections/CardSection";
 import {CardDeckInterface} from "../../components/CardDeck/CardDeckInterface";
-import {LineChartPlot} from "../../components/LineChart/LineChart";
+import {ChartSection} from "./sections/ChartSection";
 
 export const Dashboard: FC = () => {
   const {pairToken} = useParams();
@@ -69,8 +69,8 @@ export const Dashboard: FC = () => {
         <Grid className={"analytics-section"}>
           <CardSection title={"Annualized Returns"} analytics={section_2} />
         </Grid>
-        <Grid>
-          <LineChartPlot/>
+        <Grid className={"chart-section"}>
+          <ChartSection chartLegend={"Total Allocation"} title={"Performance"}/>
         </Grid>
       </Grid>
     </Grid>

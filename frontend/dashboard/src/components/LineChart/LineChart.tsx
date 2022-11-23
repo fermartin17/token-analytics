@@ -29,6 +29,7 @@ import View from  "../../assets/view.png";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Options from  "../../assets/options.png";
+import {LineChartInterface} from "./LineChartInterface";
 
 
 ChartJS.register(
@@ -53,7 +54,6 @@ export const options = {
     x: {
       grid: {
         display:false,
-        height: "2px",
       }
     },
     y: {
@@ -82,12 +82,12 @@ export const data = {
   ],
 };
 
-export const LineChartPlot: FC = () =>{
+export const LineChart: FC<LineChartInterface> = ({title, chartLegend}) =>{
   return(
     <Grid container className={"container-card"}>
       <Grid container className={"header"}>
         <Grid item xs={12} sm={6} md={6} lg={6} className={"chart-title"}>
-          Total Allocation
+          {title}
           <img src={Help} className={"icon-title"}/>
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={6} className={"chart-icons"}>
@@ -99,7 +99,7 @@ export const LineChartPlot: FC = () =>{
       </Grid>
       <Grid container className={"legend"}>
         <span className={"circle"}></span>
-        <div className={"legend-text"}>Total Allocation</div>
+        <div className={"legend-text"}>{chartLegend}</div>
       </Grid>
       <Grid container className={"buttons-section"}>
         <Grid className={"time-button"}>
@@ -134,7 +134,7 @@ export const LineChartPlot: FC = () =>{
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item className={"chart"}>
+        <Grid className={"chart"}>
           <Line options={options} data={data}/>
         </Grid>
       </Grid>

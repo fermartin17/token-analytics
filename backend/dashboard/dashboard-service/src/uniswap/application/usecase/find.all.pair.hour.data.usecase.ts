@@ -33,45 +33,53 @@ export class FindAllPairHourDataUsecase
 
       pairHourDatas = pairHourDatas.reverse();
 
-      const pairHourDataAverages: AprParams[] = [];
-
-      let volumeUsdAverage: number;
-      let reserveUsdAverage: number;
-      let feeUsdAverage: number;
-
-      for (
-        let i = 0;
-        i < FindAllPairHourDataUsecase.HOURS_BEFORE;
-        i += findAllPairHourDataCommand.hourAverage
-      ) {
-        volumeUsdAverage = 0;
-        reserveUsdAverage = 0;
-        feeUsdAverage = 0;
-
-        for (let z = 0; z < pairHourDatas.length; z++) {
-          volumeUsdAverage += pairHourDatas[i + z].hourlyVolumeUSD;
-          reserveUsdAverage += pairHourDatas[i + z].reserveUSD;
-          feeUsdAverage += pairHourDatas[i + z].feeUSD;
-        }
-        pairHourDataAverages.push({
-          volumeUsdAverage:
-            volumeUsdAverage / findAllPairHourDataCommand.hourAverage,
-          reserveUsdAverage:
-            reserveUsdAverage / findAllPairHourDataCommand.hourAverage,
-          feeUsdAverage: feeUsdAverage / findAllPairHourDataCommand.hourAverage,
-        });
-      }
-
-      return pairHourDataAverages.map((elem) =>
-        FinancialCalculations.apr(
-          elem.volumeUsdAverage,
-          elem.reserveUsdAverage,
-          elem.feeUsdAverage,
-        ),
+      return this.generatePairHourDataApr(
+        pairHourDatas,
+        findAllPairHourDataCommand.hourAverage,
       );
     } catch (error: unknown) {
       console.log(error);
     }
+  }
+
+  private generatePairHourDataApr(
+    pairHourDatas: PairHourData[],
+    hourAverage: number,
+  ): PairHourDataApr[] {
+    const pairHourDataAverages: AprParams[] = [];
+
+    let volumeUsdAverage: number;
+    let reserveUsdAverage: number;
+    let feeUsdAverage: number;
+
+    for (
+      let i = 0;
+      i < FindAllPairHourDataUsecase.HOURS_BEFORE;
+      i += hourAverage
+    ) {
+      volumeUsdAverage = 0;
+      reserveUsdAverage = 0;
+      feeUsdAverage = 0;
+
+      for (let z = 0; z < pairHourDatas.length; z++) {
+        volumeUsdAverage += pairHourDatas[i + z].hourlyVolumeUSD;
+        reserveUsdAverage += pairHourDatas[i + z].reserveUSD;
+        feeUsdAverage += pairHourDatas[i + z].feeUSD;
+      }
+      pairHourDataAverages.push({
+        volumeUsdAverage: volumeUsdAverage / hourAverage,
+        reserveUsdAverage: reserveUsdAverage / hourAverage,
+        feeUsdAverage: feeUsdAverage / hourAverage,
+      });
+    }
+
+    return pairHourDataAverages.map((elem) =>
+      FinancialCalculations.apr(
+        elem.volumeUsdAverage,
+        elem.reserveUsdAverage,
+        elem.feeUsdAverage,
+      ),
+    );
   }
 }
 

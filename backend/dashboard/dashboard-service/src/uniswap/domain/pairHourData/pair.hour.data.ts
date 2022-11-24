@@ -61,7 +61,15 @@ export class PairHourData implements PairHourDataFields {
     return this._reserve1;
   }
 
-  static generateFee(reserve0: number, reserve1: number): number {
-    return 1 - Math.sqrt(reserve0) / Math.sqrt(reserve1);
+  static generateFee(volume: number): number {
+    const feePercentage = 0.3;
+    const volumeWithoutFeeDiscountTotalPercentage = 100;
+
+    return (
+      volume *
+      (volumeWithoutFeeDiscountTotalPercentage /
+        (volumeWithoutFeeDiscountTotalPercentage - feePercentage) -
+        1)
+    );
   }
 }

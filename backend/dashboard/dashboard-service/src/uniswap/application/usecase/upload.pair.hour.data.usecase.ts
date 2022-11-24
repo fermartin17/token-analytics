@@ -60,10 +60,7 @@ export class UploadPairHourDataUsecase
       pairHourDataToBeCreated = {
         ...pairHourData,
         pairId: pairId,
-        feeUSD: PairHourData.generateFee(
-          pairHourData.reserve0,
-          pairHourData.reserve1,
-        ),
+        feeUSD: PairHourData.generateFee(pairHourData.hourlyVolumeUSD),
         pairDataDate: UploadPairHourDataUsecase.calculateDateFromEpoch(
           pairHourData.hourStartUnix,
         ),

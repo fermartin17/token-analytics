@@ -54,11 +54,11 @@ export class PairHourDataEntity {
       pairId: this.pairId,
       pairDataDate: this.pairDataDate,
       hourStartUnix: this.hourStartUnix,
-      hourlyVolumeUSD: parseInt(this.hourlyVolumeUSD),
-      reserveUSD: parseInt(this.reserveUSD),
-      reserve0: parseInt(this.reserve0),
-      reserve1: parseInt(this.reserve1),
-      feeUSD: parseInt(this.feeUSD),
+      hourlyVolumeUSD: parseFloat(this.hourlyVolumeUSD),
+      reserveUSD: parseFloat(this.reserveUSD),
+      reserve0: parseFloat(this.reserve0),
+      reserve1: parseFloat(this.reserve1),
+      feeUSD: parseFloat(this.feeUSD),
     });
   }
 }

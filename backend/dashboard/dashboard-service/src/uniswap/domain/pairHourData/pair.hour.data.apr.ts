@@ -1,4 +1,4 @@
 export interface PairHourDataApr {
   date: Date;
-  value: string;
+  value: number;
 }

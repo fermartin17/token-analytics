@@ -1,11 +1,15 @@
 import { PairHourDataApr } from '../../uniswap/domain/pairHourData/pair.hour.data.apr';
-import { PairHourData } from '../../uniswap/domain/pairHourData/pair.hour.data';
 
 export class FinancialCalculations {
-  static apr(volume: number, liquidity: number, fee: number): PairHourDataApr {
+  static apr(reserve: number, fee: number, date: Date): PairHourDataApr {
+    const yearInHours: number = 365 * 24;
+    const ratePercentage: number = fee / reserve;
+
+    const apr: number = ratePercentage * yearInHours;
+
     return {
-      date: new Date(),
-      value: '0',
+      date: date,
+      value: apr,
     };
   }
 }

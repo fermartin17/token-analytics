@@ -61,23 +61,27 @@ export class FindAllPairHourDataUsecase
       reserveUsdAverage = 0;
       feeUsdAverage = 0;
 
-      for (let z = 0; z < pairHourDatas.length; z++) {
+      let lastDate: Date;
+
+      for (let z = 0; z < pairHourDatas.length && pairHourDatas[i + z]; z++) {
         volumeUsdAverage += pairHourDatas[i + z].hourlyVolumeUSD;
         reserveUsdAverage += pairHourDatas[i + z].reserveUSD;
         feeUsdAverage += pairHourDatas[i + z].feeUSD;
+        lastDate = pairHourDatas[i + z].pairDataDate;
       }
       pairHourDataAverages.push({
         volumeUsdAverage: volumeUsdAverage / hourAverage,
         reserveUsdAverage: reserveUsdAverage / hourAverage,
         feeUsdAverage: feeUsdAverage / hourAverage,
+        date: lastDate,
       });
     }
 
     return pairHourDataAverages.map((elem) =>
       FinancialCalculations.apr(
-        elem.volumeUsdAverage,
         elem.reserveUsdAverage,
         elem.feeUsdAverage,
+        elem.date,
       ),
     );
   }
@@ -87,4 +91,5 @@ type AprParams = {
   volumeUsdAverage: number;
   reserveUsdAverage: number;
   feeUsdAverage: number;
+  date: Date;
 };

@@ -62,13 +62,13 @@ export class PairHourData implements PairHourDataFields {
   }
 
   static generateFee(volume: number): number {
-    const feePercentage = 0.3;
+    const feePercentageUniswap = 0.3;
     const volumeWithoutFeeDiscountTotalPercentage = 100;
 
     return (
       volume *
       (volumeWithoutFeeDiscountTotalPercentage /
-        (volumeWithoutFeeDiscountTotalPercentage - feePercentage) -
+        (volumeWithoutFeeDiscountTotalPercentage - feePercentageUniswap) -
         1)
     );
   }

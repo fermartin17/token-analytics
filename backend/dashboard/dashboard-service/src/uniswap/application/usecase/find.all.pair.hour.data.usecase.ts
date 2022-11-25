@@ -5,6 +5,7 @@ import { PairHourDataRepository } from '../../domain/pairHourData/pair.hour.data
 import { PairHourDataApr } from '../../domain/pairHourData/pair.hour.data.apr';
 import { PairHourData } from '../../domain/pairHourData/pair.hour.data';
 import { FinancialCalculations } from '../../../shared/utils/financial.calculations';
+import { FailToGetPairHourDatasError } from '../../errors/fail.to.get.pair.hour.datas.error';
 
 @Injectable()
 export class FindAllPairHourDataUsecase
@@ -38,7 +39,7 @@ export class FindAllPairHourDataUsecase
         findAllPairHourDataCommand.hourAverage,
       );
     } catch (error: unknown) {
-      console.log(error);
+      throw new FailToGetPairHourDatasError();
     }
   }
 
@@ -54,7 +55,7 @@ export class FindAllPairHourDataUsecase
 
     for (
       let i = 0;
-      i < FindAllPairHourDataUsecase.HOURS_BEFORE;
+      i < pairHourDatas.length && i < FindAllPairHourDataUsecase.HOURS_BEFORE;
       i += hourAverage
     ) {
       volumeUsdAverage = 0;

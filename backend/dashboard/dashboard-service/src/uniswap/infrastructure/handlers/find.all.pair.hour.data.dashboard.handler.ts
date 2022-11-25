@@ -15,6 +15,7 @@ import { FindAllPairHourDataCommand } from '../../application/command/find.all.p
 import { FindAllPairHourDataUsecase } from '../../application/usecase/find.all.pair.hour.data.usecase';
 import { PairHourDataApr } from '../../domain/pairHourData/pair.hour.data.apr';
 import { FindAllPairHourDataPresenterDto } from './dto/find.all.pair.hour.data.presenter.dto';
+import { FailToGetPairHourDatasError } from '../../errors/fail.to.get.pair.hour.datas.error';
 
 @Controller('uniswap')
 export class FindAllPairHourDataDashboardHandler {
@@ -40,7 +41,6 @@ export class FindAllPairHourDataDashboardHandler {
         findAllPairHourDataQueryParam,
       );
 
-    console.log('command', command);
     try {
       const pairHourDataApr: PairHourDataApr[] = await this.useCase.execute(
         command,
@@ -53,7 +53,9 @@ export class FindAllPairHourDataDashboardHandler {
 
       return res.send(findAllPairHourDataPresenterDto);
     } catch (error: unknown) {
-      console.log(error);
+      if (error instanceof FailToGetPairHourDatasError) {
+        return res.status(500).send();
+      }
     }
   }
 

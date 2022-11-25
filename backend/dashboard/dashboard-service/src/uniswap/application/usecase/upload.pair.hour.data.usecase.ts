@@ -6,6 +6,7 @@ import { PairHourDataRepository } from '../../domain/pairHourData/pair.hour.data
 import { PairHourDataFetch } from '../../domain/pairHourData/pair.hour.data.fetch';
 import { CreatePairHourDataDto } from '../../domain/pairHourData/create.pair.hour.data.dto';
 import { PairHourData } from '../../domain/pairHourData/pair.hour.data';
+import { FailToCreatePairHourDataError } from '../../errors/fail.to.create.pair.hour.data.error';
 
 @Injectable()
 export class UploadPairHourDataUsecase
@@ -46,7 +47,7 @@ export class UploadPairHourDataUsecase
       }
       await this.createPairHourDatas(pairHourDatas, command.pairId);
     } catch (error: unknown) {
-      console.log(error);
+      throw new FailToCreatePairHourDataError();
     }
   }
 

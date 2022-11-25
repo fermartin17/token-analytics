@@ -11,6 +11,7 @@ import { Response } from 'express';
 import { UploadPairHourDataUsecase } from '../../application/usecase/upload.pair.hour.data.usecase';
 import { UploadPairHourDataDto } from './dto/upload.pair.hour.data.dto';
 import { UploadPairHourDataCommand } from '../../application/command/upload.pair.hour.data.command';
+import { FailToCreatePairHourDataError } from '../../errors/fail.to.create.pair.hour.data.error';
 
 @Controller('uniswap')
 export class UploadPairHourDataHandler {
@@ -24,7 +25,7 @@ export class UploadPairHourDataHandler {
   }
 
   @Post('pair-hour-datas')
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.CREATED)
   async create(
     @Res() res: Response,
     @Body() uploadPairHourDataDto: UploadPairHourDataDto,
@@ -32,12 +33,13 @@ export class UploadPairHourDataHandler {
     const command: UploadPairHourDataCommand =
       UploadPairHourDataHandler.buildCommandFromDto(uploadPairHourDataDto);
 
-    console.log('command', command);
     try {
       await this.useCase.execute(command);
-      return res.setHeader('resource-id', 1111).send();
+      return res.send();
     } catch (error: unknown) {
-      console.log(error);
+      if (error instanceof FailToCreatePairHourDataError) {
+        return res.status(500).send();
+      }
     }
   }
 

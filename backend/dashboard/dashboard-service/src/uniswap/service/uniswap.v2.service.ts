@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { UniswapService } from '../domain/uniswap.service.interface';
 import { PairHourDataFetch } from '../domain/pairHourData/pair.hour.data.fetch';
+import { FailToFetchDataFromUniswapError } from "../errors/fail.to.fetch.data.from.uniswap.error";
 
 @Injectable()
 export class UniswapV2ServiceImpl implements UniswapService {
@@ -49,8 +50,8 @@ export class UniswapV2ServiceImpl implements UniswapService {
       );
 
       return response.data.data.pairHourDatas;
-    } catch (error: any) {
-      console.log(error);
+    } catch (error: unknown) {
+      throw new FailToFetchDataFromUniswapError();
     }
   }
 }

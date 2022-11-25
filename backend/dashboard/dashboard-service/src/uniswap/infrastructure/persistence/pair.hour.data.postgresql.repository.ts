@@ -4,6 +4,9 @@ import { Repository } from 'typeorm';
 import { PairHourData } from '../../domain/pairHourData/pair.hour.data';
 import { CreatePairHourDataDto } from '../../domain/pairHourData/create.pair.hour.data.dto';
 import { PairHourDataRepository } from '../../domain/pairHourData/pair.hour.data.repository';
+import { FailToCreatePairHourDataError } from '../../errors/fail.to.create.pair.hour.data.error';
+import { FailToObtainPairHourDataError } from '../../errors/fail.to.obtain.pair.hour.data.error';
+import { FailToGetPairHourDatasError } from '../../errors/fail.to.get.pair.hour.datas.error';
 
 @Injectable()
 export class PairHourDataPostgresqlRepository
@@ -30,8 +33,8 @@ export class PairHourDataPostgresqlRepository
         entityToBeCreated,
       );
       return pairHourDataEntity.toDomainModel();
-    } catch (error: any) {
-      console.log(error);
+    } catch (error: unknown) {
+      throw new FailToCreatePairHourDataError();
     }
   }
 
@@ -46,7 +49,7 @@ export class PairHourDataPostgresqlRepository
 
       return newestPairHourData ? newestPairHourData.toDomainModel() : null;
     } catch (error: unknown) {
-      console.log(error);
+      throw new FailToObtainPairHourDataError();
     }
   }
 
@@ -64,7 +67,7 @@ export class PairHourDataPostgresqlRepository
 
       return pairHourDatas.map((elem) => elem.toDomainModel());
     } catch (error: unknown) {
-      console.log(error);
+      throw new FailToGetPairHourDatasError();
     }
   }
 }

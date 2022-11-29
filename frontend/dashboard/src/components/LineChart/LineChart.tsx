@@ -66,7 +66,7 @@ export const options = {
 //   ],
 // };
 
-export const LineChart: FC<LineChartInterface> = ({title, chartLegend, labels, values}) =>{
+export const LineChart: FC<LineChartInterface> = ({labels, values}) =>{
   const data = {
     labels,
     datasets: [

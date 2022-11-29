@@ -26,7 +26,7 @@ import {PairHourDataApi} from "../../../api/pairHourData/pair.hour.data.api";
 import {useParams, useSearchParams} from "react-router-dom";
 import {PairHourDataApr} from "../../../domain/PairHourDataApr";
 
-export const ChartSection: FC<ChartSectionInterface> = ({title, chartLegend}, {history}) => {
+export const ChartSection: FC<ChartSectionInterface> = ({title, chartLegend}) => {
   const {pairToken} = useParams();
   const [labels, setLabels] = useState<string[]>([]);
   const [values, setValues] = useState<string[]>([]);

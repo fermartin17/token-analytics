@@ -10,6 +10,10 @@ import {Dashboard} from "./pages/dashboard/Dashboard";
 import {ChartSection} from "./pages/dashboard/sections/ChartSection";
 import {LineChart} from "./components/LineChart/LineChart";
 
+import Axios from "axios";
+
+Axios.defaults.baseURL = process.env.REACT_APP_BASE_API_URL;
+
 const App = () => {
   return (
     <Router>

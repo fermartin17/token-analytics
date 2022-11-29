@@ -11,9 +11,10 @@ import {CardSection} from "./sections/CardSection";
 import {CardDeckInterface} from "../../components/CardDeck/CardDeckInterface";
 import {ChartSection} from "./sections/ChartSection";
 
+
 export const Dashboard: FC = () => {
   const {pairToken} = useParams();
-    
+
   console.log(pairToken);
 
   const section_1: CardDeckInterface = {

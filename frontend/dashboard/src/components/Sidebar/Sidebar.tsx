@@ -33,10 +33,10 @@ import User from  "../../assets/user.png";
 export const Sidebar: FC = () => {
   return(
     <Grid container className={"sidebar"} style={{width:"63px"}}>
-      <Grid container xs={12} sm={12} md={12} className={"sidebar-logo"}>
+      <Grid container xs={12} sm={12} className={"sidebar-logo"}>
         <img src={Logo} className={"logo"}/>
       </Grid>
-      <Grid container xs={12} sm={12} md={12} className={"sidebar-tools-section"}>
+      <Grid container xs={12} sm={12} className={"sidebar-tools-section"}>
         <Grid xs={12} sm={12} md={12} >
           <Grid className={"tools-selected"}>
             <img src={Home} className={"sidebar-icon"}/>

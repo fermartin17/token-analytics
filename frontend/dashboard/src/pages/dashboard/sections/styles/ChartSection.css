@@ -1,3 +1,18 @@
+@charset "UTF-8";
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+.header {
+  height: 55px;
+}
+
 .section-chart-title {
   font-family: "Inter";
   font-style: normal;
@@ -6,6 +21,125 @@
   line-height: 18px;
   margin-bottom: 10px;
   color: #333335;
+}
+
+.buttons-section {
+  padding-left: 16.1px;
+  padding-top: 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
+.time-button {
+  width: 30.19px;
+  height: 22px;
+  background: #F6F6F6;
+  border-radius: 2px;
+  margin-left: 6.04px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.selected {
+  box-sizing: border-box;
+  background: #E2E8F3;
+  border: 1px solid #2467E8;
+}
+
+.time-button-text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  letter-spacing: 0.12px;
+  display: flex;
+  align-items: center;
+  color: #43484D;
+}
+
+.chart-title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 23px;
+  display: flex;
+  padding-top: 16px;
+  padding-left: 16.1px;
+  align-items: center;
+  justify-content: flex-start;
+  color: #152935;
+}
+
+.chart-icons {
+  display: flex;
+  padding-right: 19.13px;
+  padding-top: 16px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.icon-title {
+  height: 15px;
+  width: 15px;
+  padding-left: 2.9px;
+}
+
+.icon {
+  height: 15px;
+  padding-left: 30px;
+}
+
+.circle:before {
+  content: " ●";
+  font-size: 11px;
+  color: #2E71F0;
+}
+
+.legend {
+  padding-left: 16.1px;
+  padding-top: 17px;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
+.legend-text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  padding-left: 6px;
+  color: #43484D;
+}
+
+.container-card {
+  background: #FFFFFF;
+  border: 1px solid #EFEFF4;
+  box-shadow: 0px 0px 5px #EFEFF4;
+  border-radius: 8px;
+  padding-bottom: 30.62px;
+  padding-right: 30px;
+}
+
+.custom-button {
+  margin-top: 2px;
+  width: 52.33px;
+  height: 22px;
+  background: #F6F6F6;
+  border-radius: 2px;
+  margin-left: 6.04px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=ChartSection.css.map */

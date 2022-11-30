@@ -3,7 +3,6 @@ import * as React from "react";
 import {Grid} from "@mui/material";
 
 import "./Dashboard.scss";
-import {useParams} from "react-router-dom";
 
 import {Sidebar} from "../../components/Sidebar/Sidebar";
 import {Navbar} from "../../components/Navbar/Navbar";
@@ -13,9 +12,6 @@ import {ChartSection} from "./sections/ChartSection";
 
 
 export const Dashboard: FC = () => {
-  const {pairToken} = useParams();
-
-  console.log(pairToken);
 
   const section_1: CardDeckInterface = {
     items: [{

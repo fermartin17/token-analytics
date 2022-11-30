@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useEffect, useMemo, useState} from "react";
 import * as React from "react";
 import {Grid} from "@mui/material";
 import {ChartSectionInterface} from "./interfaces/ChartSectionInterface";
@@ -31,22 +31,49 @@ export const ChartSection: FC<ChartSectionInterface> = ({title, chartLegend}) =>
   const [labels, setLabels] = useState<string[]>([]);
   const [values, setValues] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [oneHourActive, setOneHourActive] = useState<boolean>(false);
+  const [sixHourActive, setSixHourActive] = useState<boolean>(false);
+  const [twelveHourActive, setTwelveHourActive] = useState<boolean>(false);
+  
+  const HOUR_AVERAGE_QUERY_PARAMETER_KEY = "hour_average";
+  const DEFAULT_HOUR_AVERAGE = "12";
 
+  const cleanActiveButtons = (): void => {
+    setOneHourActive(false);
+    setSixHourActive(false);
+    setTwelveHourActive(false);
+  };
+  
+  const activeButtonSelected = (hourAverage: string): void => {
+    if(hourAverage == "1"){
+      setOneHourActive(true);
+    }
+    else if(hourAverage == "6"){
+      setSixHourActive(true);
+    }
+    else if(hourAverage == "12"){
+      setTwelveHourActive(true);
+    }
+  };
 
   const pairHourDataApi: PairHourDataApi = new PairHourDataApi();
   
-  const fetchPairHourDatasAprByRange = async (hourAverage: string): Promise<void> => {
+  const timeAverageButtonClicked = async (hourAverage: string): Promise<void> => {
+    cleanActiveButtons();
+    activeButtonSelected(hourAverage);
     setSearchParams({"hour_average": hourAverage});
   };
 
   useEffect((): void => {
     try {
       (async () => {
-        let hourAverageQueryParam: string = searchParams.get("hour_average");
+        let hourAverageQueryParam: string = searchParams.get(HOUR_AVERAGE_QUERY_PARAMETER_KEY);
 
         if(!hourAverageQueryParam){
-          hourAverageQueryParam = "12";
+          hourAverageQueryParam = DEFAULT_HOUR_AVERAGE;
         }
+
+        activeButtonSelected(hourAverageQueryParam);
 
         await pairHourDataApi.findAllPairHourDataAprByPairId(pairToken, hourAverageQueryParam)
           .then((elems:PairHourDataApr[]) => {
@@ -63,7 +90,7 @@ export const ChartSection: FC<ChartSectionInterface> = ({title, chartLegend}) =>
     }}, [searchParams]);
 
   return (
-    <Grid container xs={12} sm={12} md={12} lg={12}>
+    <Grid container xs={12} sm={12} md={12}>
       <Grid xs={12} sm={12} md={12} className={"section-chart-title"}>
         {title}
       </Grid>
@@ -85,14 +112,14 @@ export const ChartSection: FC<ChartSectionInterface> = ({title, chartLegend}) =>
           <div className={"legend-text"}>{chartLegend}</div>
         </Grid>
         <Grid container className={"buttons-section"}>
-          <Grid className={"time-button"}>
-            <div className={"time-button-text"} onClick={() => fetchPairHourDatasAprByRange("1")}>1hs</div>
+          <Grid className={oneHourActive ? "time-button selected" : "time-button"}>
+            <div className={"time-button-text"} onClick={() => timeAverageButtonClicked("1")}>1hs</div>
           </Grid>
-          <Grid className={"time-button"}>
-            <div className={"time-button-text"} onClick={() => fetchPairHourDatasAprByRange("6")}>6hs</div>
+          <Grid className={sixHourActive ? "time-button selected" : "time-button"}>
+            <div className={"time-button-text"} onClick={() => timeAverageButtonClicked("6")}>6hs</div>
           </Grid>
-          <Grid className={"time-button"}>
-            <div className={"time-button-text"} onClick={() => fetchPairHourDatasAprByRange("12")}>12hs</div>
+          <Grid className={twelveHourActive ? "time-button selected" : "time-button"}>
+            <div className={"time-button-text"} onClick={() => timeAverageButtonClicked("12")}>12hs</div>
           </Grid>
           <Grid className={"time-button"}>
             <div className={"time-button-text"}>1m</div>
@@ -117,7 +144,7 @@ export const ChartSection: FC<ChartSectionInterface> = ({title, chartLegend}) =>
           </Grid>
         </Grid>
         <Grid container>
-          <LineChart chartLegend={chartLegend} title={chartLegend} labels={labels} values={values}></LineChart>
+          <LineChart labels={labels} values={values}></LineChart>
         </Grid>
       </Grid>
     </Grid>

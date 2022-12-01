@@ -64,7 +64,7 @@ export class FindAllPairHourDataUsecase
 
       let lastDate: Date;
 
-      for (let z = 0; z < pairHourDatas.length && pairHourDatas[i + z]; z++) {
+      for (let z = 0; z < hourAverage && pairHourDatas[i + z]; z++) {
         volumeUsdAverage += pairHourDatas[i + z].hourlyVolumeUSD;
         reserveUsdAverage += pairHourDatas[i + z].reserveUSD;
         feeUsdAverage += pairHourDatas[i + z].feeUSD;

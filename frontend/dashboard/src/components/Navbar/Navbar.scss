@@ -15,6 +15,13 @@ html {
   height: 64px;
   background: #FFFFFF;
   width: auto;
+
+  @media screen and (max-width: 650px) {
+    width: 170px;
+    height: 60px;
+    align-content: baseline;
+    justify-content: center;
+  }
 }
 
 .navbar-text {
@@ -29,6 +36,12 @@ html {
   justify-content: left;
 
   color: #333335;
+
+  @media screen and (max-width: 650px) {
+    width: 170px;
+    font-size: 15px;
+    justify-content: flex-start;
+  }
 }
 
 .navbar-search {
@@ -36,6 +49,14 @@ html {
   align-items: center;
   justify-content: right;
   padding-right: 49px;
+
+  @media screen and (max-width: 650px) {
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-top: 10px;
+    padding-left: 105px;
+    height: 20px;
+  }
 }
 
 .search-input {
@@ -52,4 +73,10 @@ html {
   font-size: 14px;
   line-height: 17px;
   color: #C0C0C5;
+
+  @media screen and (max-width: 650px) {
+    width: 170px;
+    height: 20px;
+    font-size: 10px;
+  }
 }

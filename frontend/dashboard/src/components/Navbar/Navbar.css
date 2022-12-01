@@ -14,6 +14,14 @@ html {
   background: #FFFFFF;
   width: auto;
 }
+@media screen and (max-width: 650px) {
+  .navbar {
+    width: 170px;
+    height: 60px;
+    align-content: baseline;
+    justify-content: center;
+  }
+}
 
 .navbar-text {
   font-family: "Inter";
@@ -27,12 +35,28 @@ html {
   justify-content: left;
   color: #333335;
 }
+@media screen and (max-width: 650px) {
+  .navbar-text {
+    width: 170px;
+    font-size: 15px;
+    justify-content: flex-start;
+  }
+}
 
 .navbar-search {
   display: flex;
   align-items: center;
   justify-content: right;
   padding-right: 49px;
+}
+@media screen and (max-width: 650px) {
+  .navbar-search {
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-top: 10px;
+    padding-left: 105px;
+    height: 20px;
+  }
 }
 
 .search-input {
@@ -48,6 +72,13 @@ html {
   font-size: 14px;
   line-height: 17px;
   color: #C0C0C5;
+}
+@media screen and (max-width: 650px) {
+  .search-input {
+    width: 170px;
+    height: 20px;
+    font-size: 10px;
+  }
 }
 
 /*# sourceMappingURL=Navbar.css.map */

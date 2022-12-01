@@ -6,7 +6,6 @@ import "./Navbar.scss";
 import {FC} from "react";
 import {Grid} from "@mui/material";
 
-
 export const Navbar: FC<NavbarInterface> = ({title}) => {
 
   return (

@@ -80,3 +80,15 @@ html {
     font-size: 10px;
   }
 }
+
+.search-icon{
+  font-size: 14px;
+  z-index: 1;
+  @media screen and (max-width: 650px) {
+    font-size: 10px;
+  }
+}
+
+.location{
+z-index: 1;
+}
